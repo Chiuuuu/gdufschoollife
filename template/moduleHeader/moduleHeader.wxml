@@ -1,0 +1,6 @@
+<template name="moduleHeader">
+  <view class="module-header">
+    <view class="line"></view>
+    <view class="title">{{title}}</view>
+  </view>
+</template>

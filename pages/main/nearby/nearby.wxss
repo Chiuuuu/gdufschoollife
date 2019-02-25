@@ -1,0 +1,17 @@
+/* pages/nearby/nearby.wxss */
+@import "/template/moduleHeader/moduleHeader.wxss";
+
+.school-poster {
+  width: 100%;
+  height: 520rpx;
+}
+
+.school-poster image {
+  width: 100%;
+  height: 420rpx;
+}
+
+.school-share .share-item {
+  width: 100%;
+  color: #999;
+}

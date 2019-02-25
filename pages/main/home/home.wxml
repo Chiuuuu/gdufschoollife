@@ -1,0 +1,7 @@
+<!--pages/main/home/home.wxml-->
+
+<block wx:if="{{category.length !== 0}}">
+  <home-swiper class="home-swiper" img-urls="{{imgUrls}}" />
+  <home-category class="home-category" icon-list="{{category}}" />
+  <home-schedule class="home-schedule" class-list="{{classList}}" />
+</block>

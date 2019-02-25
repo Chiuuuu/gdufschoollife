@@ -1,0 +1,17 @@
+<!--pages/nearby/nearby.wxml-->
+<import src="/template/moduleHeader/moduleHeader.wxml"></import>
+
+<!-- 校园公告 -->
+<view class="school-poster">
+  <!-- 今日公告 -->
+  <template is="moduleHeader" data="{{title: '今日公告'}}" />
+  <image src="{{poster}}" />
+
+</view>
+<view class="school-share">
+  <!-- 校友动态 -->
+  <template is="moduleHeader" data="{{title: '动态'}}" />
+  <block wx:for="{{shareList}}" wx:key="{{index}}">
+    <share-item class="share-item" data-index="{{index}}" item-index="{{index}}" share-item="{{item}}" bindclickLike="clickLike" />
+  </block>
+</view>

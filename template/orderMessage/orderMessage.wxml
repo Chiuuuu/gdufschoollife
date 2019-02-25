@@ -1,0 +1,6 @@
+<template name="orderMessage">
+  <view class="order-message">
+    <view class="title">{{title}}</view>
+    <input class="message" name="{{name}}" placeholder="请填写{{title}}" placeholder-style="color: #999" />
+  </view>
+</template>

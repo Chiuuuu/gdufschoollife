@@ -1,0 +1,16 @@
+<!--pages/main/profile/profile.wxml-->
+
+<!-- 头像, 昵称 -->
+<view class="user-info">
+  <open-data class="user-avatar" type="userAvatarUrl" />
+  <open-data class="user-name" type="userNickName" />
+</view>
+
+<block class="user-controll" wx:for="{{iconList}}" wx:key="{{item.title}}">
+  <view class="icon-item">
+    <image src="{{item.icon}}" />
+    <text style="border-bottom: {{index === iconList.length -1 ? 'none' : '1px solid #ddd'}}">{{item.title}}</text>
+  </view>
+</block>
+
+

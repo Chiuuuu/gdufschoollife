@@ -1,0 +1,44 @@
+/* pages/main/order/orderComponent/exchangeItem/exchangeItem.wxss */
+
+.exchange-item {
+  width: 100%;
+  height: 200rpx;
+  border-bottom: 1px solid #ddd;
+  box-sizing: border-box;
+  padding: 0 30rpx;
+
+  display: flex;
+  align-items: center;
+}
+
+.exchange-item image {
+  width: 150rpx;
+  height: 150rpx;
+  margin-right: 30rpx;
+}
+
+.exchange-item .info {
+  flex: 1;
+  height: 100%;
+  line-height: 60rpx;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+}
+
+.exchange-item .info .goodsName {
+  font-size: 50rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+.exchange-item .info .desc {
+  font-size: 36rpx;
+  color: #999;
+}
+
+.exchange-item .info .update {
+  font-size: 32rpx;
+  color: #ccc;
+}

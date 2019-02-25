@@ -1,0 +1,24 @@
+<!--pages/main/packageOrder/packageOrder.wxml-->
+<import src="/template/orderMessage/orderMessage.wxml" />
+<import src="/template/moduleHeader/moduleHeader.wxml" />
+
+<!-- 标题 -->
+<template is="moduleHeader" data="{{title: '请填写信息'}}"></template>
+<!-- 代取快递订单填写界面 -->
+<form class="package-order" bindsubmit="formSubmit">
+  <!-- 信息input -->
+  <block wx:for="{{msgList}}" wx:key="{{index}}">
+    <template is="orderMessage" data="{{...item}}"></template>
+  </block>
+  <!-- 是否加急 -->
+  <radio-group class="radio-group" bindchange="radioChange">
+    <view class="title" >是否加急</view>
+    <label class="radio" wx:for="{{typeList}}" wx:key="{{index}}">
+      <radio value="{{item}}" checked="{{index === 0}}" />
+      {{item}}
+    </label>
+  </radio-group>
+  <!-- 提交按钮 -->
+  <button form-type="submit" class="order-submit">提交</button>
+</form>
+

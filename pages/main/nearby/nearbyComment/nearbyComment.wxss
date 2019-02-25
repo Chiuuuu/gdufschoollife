@@ -1,0 +1,6 @@
+/* pages/main/nearby/nearbyComment/nearbyComment.wxss */
+@import "../nearbyComponent/shareItem/shareItem.wxss";
+
+.comment-list {
+  width: 100%;
+}

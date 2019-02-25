@@ -1,0 +1,44 @@
+<!--index.wxml-->
+<view class="flex-column container">
+  <!-- 欢迎 -->
+  <view class="login-title">{{welcome}}</view>
+
+  <!-- 头像和昵称 -->
+  <view class="login-user">
+    <view class="userinfo">
+      <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+  </view>
+
+  <form bindsubmit="loginSubmit" class="login-input">
+    <input
+      type="text"
+      placeholder-style="color: #8E0B02"
+      placeholder="请输入学号"
+      />
+    <input
+      password="{{true}}"
+      placeholder-style="color: #8E0B02"
+      placeholder="请输入密码"
+      />
+    <button
+      hover-class="button-hover"
+      class="sign-in"
+      form-type="submit"
+    >登录</button>
+    <view class="login-serve">
+    <text class="sign-up">注册</text>
+    <text class="reset">忘记密码?</text>
+  </view>
+  </form>
+
+
+<!--
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view> -->
+</view>

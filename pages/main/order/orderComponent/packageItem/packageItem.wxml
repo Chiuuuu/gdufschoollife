@@ -1,0 +1,14 @@
+<!--pages/main/order/orderComponent/orderItem/orderItem.wxml-->
+
+<view class="package-item">
+  <image wx:if="{{type === 'urgent'}}" src="/images/order/urgent.png" />
+  <image wx:elif="{{type === 'today'}}" src="/images/order/today.png" />
+  <image wx:else src="/images/order/normal.png" />
+  <view class="info">
+    <view class="top">
+      <view class="located">{{located}}</view>
+      <view class="compony">{{compony}}快递</view>
+    </view>
+    <view class="deadline">截止至: {{deadline}}</view>
+  </view>
+</view>

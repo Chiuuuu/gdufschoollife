@@ -1,0 +1,19 @@
+/* pages/main/home/home.wxss */
+
+.home-category {
+  width: 100%;
+  height: 180rpx;
+
+  display: flex;
+}
+
+.home-swiper {
+  height: 420rpx;
+  width: 100%;
+}
+
+.home-schedule {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 20rpx;
+}

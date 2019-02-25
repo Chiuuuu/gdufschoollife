@@ -1,0 +1,15 @@
+<!--pages/main/home/homeSwiper/homeSwiper.wxml-->
+
+<swiper
+  indicator-dots="{{true}}"
+  circular="{{true}}"
+  autoplay="{{true}}"
+  interval="{{5000}}"
+  duration="{{500}}"
+>
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+    <swiper-item>
+      <image class="swiper-image" src="{{item}}" />
+    </swiper-item>
+  </block>
+</swiper>

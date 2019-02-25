@@ -1,0 +1,60 @@
+<!--pages/main/home/homeComponent/homeSchedule/homeSchedule.wxml-->
+
+<wxs module="schedule">
+  var today = getDate().getDay();
+  var day = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+  var cn_index = ['一', '二', '三', '四', '五'];
+  function index(i) {
+    return cn_index[i]
+  }
+
+  module.exports = {
+    today: day[today],
+    index: index
+  };
+</wxs>
+
+<view class="my-schedule">
+  <view class="date">
+    <!-- 学校logo -->
+    <image src="/images/logo.png" />
+    <!-- 星期几 -->
+    <text style="font-weight: 700; font-size: 40rpx; margin: 0 20rpx;">{{schedule.today}}</text>
+    <!-- 第几周 -->
+    <text style="font-size: 32rpx;">(第四周)</text>
+  </view>
+  <!-- 判断今天是否有课 -->
+  <block wx:if="{{classList.length === 0}}">
+    <view class="class-none">今天没有课呢!</view>
+  </block>
+  <!-- 有课 -->
+  <block wx:else>
+    <block wx:for="{{classList}}" wx:key="{{index}}">
+      <view class="class-item">
+        <!-- 课程时长 -->
+        <view class="class-number">{{item.time}}</view>
+        <!-- 课程信息 -->
+        <view class="class-info" style="border-bottom: {{index === classList.length -1 ? 'none' : '1px solid #ddd'}}">
+          <view>
+            <!-- 课程, 教师名字 -->
+            <view style="margin-bottom: 8rpx">
+              <text style="font-size: 28rpx">{{item.name}}</text>
+              <text> ({{item.teacher}})</text>
+            </view>
+            <!-- 教室位置 -->
+            <view>
+              <image src="/images/located.png" style="width: 28rpx; height: 28rpx" />
+              <text style="margin-left: 10rpx">{{item.located}}</text>
+            </view>
+          </view>
+          <view>
+            <!-- 课程历时 -->
+            <view>{{item.week}}</view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </block>
+</view>
+

@@ -1,0 +1,7 @@
+<!--pages/main/home/homeCategory/homeCategory.wxml-->
+<block wx:for="{{iconList}}" wx:key="{{index}}">
+  <view class="category-icon">
+    <image src="{{item.image}}" />
+    <text>{{item.title}}</text>
+  </view>
+</block>

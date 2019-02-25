@@ -1,0 +1,61 @@
+/* pages/main/home/homeComponent/homeSchedule/homeSchedule.wxss */
+
+.my-schedule .date {
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+}
+
+.my-schedule .date image {
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+  top: 15rpx
+}
+
+.my-schedule .class-item {
+  width: 100%;
+  height: 160rpx;
+  color: #666;
+
+  display: flex;
+}
+
+.my-schedule .class-number {
+  height: 100%;
+  width: 160rpx;
+  font-size: 28rpx;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.my-schedule .class-info {
+  height: 100%;
+  flex: 1;
+  font-size: 24rpx;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.my-schedule .class-info > view {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.my-schedule .class-none {
+  height: 120rpx;
+  color: #ddd;
+  font-size: 40rpx;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+

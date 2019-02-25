@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#8E0B02",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "home-category": "./homeComponent/homeCategory/homeCategory",
+    "home-swiper": "./homeComponent/homeSwiper/homeSwiper",
+    "home-schedule": "./homeComponent/homeSchedule/homeSchedule"
+  }
+}

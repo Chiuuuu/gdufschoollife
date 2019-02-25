@@ -1,0 +1,77 @@
+/* pages/main/nearby/nearbyComponent/share-box/shareBox.wxss */
+
+.share-box {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx 30rpx 0 30rpx;
+  border-bottom: 20rpx solid #eee;
+}
+
+.share-box .icon {
+  width: 32rpx;
+  height: 32rpx;
+  vertical-align: middle;
+}
+
+.share-box .user-info {
+  width: 100%;
+  height: 120rpx;
+
+  display: flex;
+  align-items: center;
+}
+
+.share-box .user-info .avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.share-box .user-info .info {
+  flex: 3;
+  height: 100%;
+  line-height: 60rpx;
+  margin-left: 30rpx;
+}
+
+.share-box .user-info .options {
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.share-box .content {
+  width: 100%;
+  padding: 30rpx 0;
+  text-indent: 64rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #333;
+}
+
+.share-box .controller {
+  width: 100%;
+  height: 80rpx;
+  border-top: 1px dashed #cdcdcd;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.share-box .controller .icon-bar {
+  flex: 1;
+  font-size: 26rpx;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+}
+
+.share-box .controller .icon-bar text {
+  margin-left: 10rpx;
+}

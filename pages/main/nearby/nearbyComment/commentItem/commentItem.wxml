@@ -1,0 +1,26 @@
+<!--pages/main/nearby/nearbyComment/commentList/commentList.wxml-->
+
+<view class="comment-item">
+  <view class="share-box">
+  <!-- 发布者信息 -->
+  <view class="user-info">
+    <!-- 头像 -->
+    <view class="avatar">
+      <image src="{{avatar}}" style="width: 100%; height: 100%" />
+    </view>
+    <!-- 信息 -->
+    <view class="info">
+      <view style="color: #333; font-weight: 500">{{name}}</view>
+      <view style="font-size: 24rpx">{{filter.setDate(timeStamp)}}</view>
+    </view>
+    <view class="light" bindtap="clickLight">
+      <image class="icon" wx:if="{{lighted}}" src="/images/nearby/lighted.png" />
+      <image class="icon" wx:else src="/images/nearby/light.png" />
+    </view>
+  </view>
+
+  <!-- 正文 -->
+  <view class="content">{{content}}</view>
+
+  </view>
+</view>

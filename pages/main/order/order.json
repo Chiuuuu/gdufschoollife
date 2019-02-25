@@ -1,0 +1,10 @@
+{
+  "navigationBarBackgroundColor": "#8E0B02",
+  "navigationBarTextStyle": "white",
+  "navigationBarTitleText": "订单",
+  "usingComponents": {
+    "package-item": "./orderComponent/packageItem/packageItem",
+    "exchange-item": "./orderComponent/exchangeItem/exchangeItem",
+    "order-controller": "./orderComponent/orderController/orderController"
+  }
+}

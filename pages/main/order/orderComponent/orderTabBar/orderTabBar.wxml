@@ -1,0 +1,11 @@
+<!--pages/main/order/orderComponent/orderTabBar/orderTabBar.wxml-->
+
+<view class="">
+  <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{5000}}" duration="{{500}}">
+    <block wx:for="{{imgUrls}}">
+      <swiper-item>
+        <scroll-view class=""></scroll-view>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>

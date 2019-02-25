@@ -1,0 +1,47 @@
+/* pages/main/profile/profile.wxss */
+
+.user-info {
+  width: 100%;
+  height: 160rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+  border-bottom: 1px solid #ddd;
+
+  display: flex;
+  align-items: center;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  margin-right: 30rpx;
+}
+
+.user-name {
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.icon-item {
+  width: 100%;
+  height: 100rpx;
+  box-sizing: border-box;
+  padding: 0 20rpx;
+
+  display: flex;
+  align-items: center;
+}
+
+.icon-item image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-right: 20rpx;
+}
+
+.icon-item text {
+  height: 100%;
+  flex: 1;
+
+  display: flex;
+  align-items: center;
+}

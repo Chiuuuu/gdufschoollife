@@ -1,0 +1,17 @@
+/* pages/main/home/homeCategory/homeCategory.wxss */
+.category-icon {
+  box-sizing: border-box;
+  width: 25%;
+  height: 100%;
+  font-size: 28rpx;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center
+}
+
+.category-icon image {
+  width: 96rpx;
+  height: 96rpx;
+}

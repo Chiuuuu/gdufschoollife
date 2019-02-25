@@ -1,0 +1,5 @@
+<!--pages/main/order/orderComponent/orderController/orderController.wxml-->
+
+<view class="order-controller" bindtap="btnClick">
+  <image src="/images/order/controller.png" />
+</view>

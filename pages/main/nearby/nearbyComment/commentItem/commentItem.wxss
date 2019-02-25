@@ -1,0 +1,14 @@
+/* pages/main/nearby/nearbyComment/commentList/commentList.wxss */
+@import "../../nearbyComponent/shareItem/shareItem.wxss";
+
+.share-box .light {
+  height: 70%;
+  flex: 1;
+
+  display: flex;
+  justify-content: flex-end;
+}
+
+.comment-item .share-box {
+  border-bottom: 1px dashed #bbb;
+}

@@ -1,0 +1,43 @@
+<!--pages/main/exchangeOrder/exchangeOrder.wxml-->
+<import src="/template/orderMessage/orderMessage.wxml" />
+<import src="/template/moduleHeader/moduleHeader.wxml" />
+
+<!-- 标题 -->
+<template is="moduleHeader" data="{{title: '请填写信息'}}"></template>
+
+<!-- 代取快递订单填写界面 -->
+<form class="exchange-order" bindsubmit="formSubmit">
+  <!-- 信息input -->
+  <block wx:for="{{msgList}}" wx:key="{{index}}">
+    <template is="orderMessage" data="{{...item}}"></template>
+  </block>
+
+  <!-- 物品描述 -->
+  <view class="exchange-message">
+    <view class="title">物品描述</view>
+    <textarea
+      class="desc"
+      placeholder="请填写物品描述"
+      maxlength="60"
+      bindblur="getDescVal"
+      ></textarea>
+  </view>
+
+  <view class="exchange-message">
+    <view class="title">添加图片</view>
+    <!-- 判断是否已经添加了图片 -->
+    <view wx:if="{{goodsImg}}" class="exchange-add">
+      <image src="{{goodsImg}}" bindtap="previewImage" data-src="{{goodsImg}}" />
+      <image src="/images/order/change.png" bindtap="changeImage" />
+    </view>
+    <!-- 若没有,则可以点击添加 -->
+    <view wx:else class="exchange-add" bindtap="addImage">
+      <image src="/images/order/add.png" />
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button form-type="submit" class="order-submit">提交</button>
+</form>
+
+

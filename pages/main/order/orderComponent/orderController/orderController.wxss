@@ -1,0 +1,16 @@
+/* pages/main/order/orderComponent/orderController/orderController.wxss */
+
+.order-controller {
+  width: 100rpx;
+  height: 100rpx;
+
+  position: fixed;
+  right: 50rpx;
+  bottom: 50rpx;
+  z-index: 10;
+}
+
+.order-controller image {
+  width: 100%;
+  height: 100%;
+}
