@@ -2,11 +2,16 @@
 
 <wxs module="filter" src="../../../../../utils/tools.wxs" />
 
-<view class="exchange-item">
+<view class="exchange-item" bindtap="clickShowDetail">
   <image src="{{image}}" />
   <view class="info">
-    <view class="goodsName">{{goodsName}}</view>
+    <view class="goods">
+      <view class="goodsName">{{goodsName}}</view>
+      <view class="price">¥{{price}}</view>
+    </view>
     <view class="desc">{{desc}}</view>
     <view class="update">{{filter.setDate(timeStamp)}}</view>
   </view>
 </view>
+
+

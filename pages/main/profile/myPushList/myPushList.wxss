@@ -1,0 +1,7 @@
+/* pages/main/profile/myOrderList/myOrderList.wxss */
+
+.order-box {
+  width: 100%;
+  height: 100%;
+  white-space: nowrap;
+}

@@ -8,7 +8,7 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        let {fileID, image, goodsName, desc, timeStamp, name, phone} = newVal
+        let {fileID, image, price, goodsName, desc, timeStamp, name, phone} = newVal
         if (fileID) {
           wx.cloud.downloadFile({
             fileID: fileID, // 文件 ID
@@ -18,6 +18,7 @@ Component({
               image = res.tempFilePath
               this.setData({
                 image,
+                price,
                 goodsName,
                 desc,
                 timeStamp,
@@ -31,6 +32,7 @@ Component({
           this.setData({
             image,
             goodsName,
+            price,
             desc,
             timeStamp,
             name,
@@ -47,6 +49,7 @@ Component({
   data: {
     image: '',
     goodsName: '',
+    price: '',
     desc: '',
     timeStamp: '',
     name: '',
@@ -57,6 +60,8 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
+    clickShowDetail() {
+      this.triggerEvent('clickDetail', {desc: this.data.desc})
+    }
   }
 })

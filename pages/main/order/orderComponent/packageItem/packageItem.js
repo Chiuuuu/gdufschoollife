@@ -12,11 +12,12 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        let {_id, type, compony, deadline, located, room, phone} = newVal
+        let {_id, type, compony, kind, deadline, located, room, phone} = newVal
         this.setData({
           _id,
           type,
           compony,
+          kind,
           deadline,
           located,
           room,
@@ -33,6 +34,7 @@ Component({
     _id: null,
     type: null,
     compony: null,
+    kind: null,
     located: null,
     room: null,
     phone: null,
@@ -69,7 +71,7 @@ Component({
           icon: 'success'
         })
         wx.navigateTo({
-          url: '/pages/main/profile/myOrderList/myOrderList'
+          url: '/pages/main/profile/myPullList/myPullList'
         })
       })
     }

@@ -9,8 +9,7 @@
     "pages/main/order/package/packageOrder/packageOrder",
     "pages/main/profile/profile",
     "pages/main/nearby/nearbyComment/nearbyComment",
-    "pages/main/order/exchange/exchangeDetail/exchangeDetail",
-    "pages/main/profile/myOrderList/myOrderList"
+    "pages/main/profile/myPushList/myPushList"
   ],
   "window": {
     "backgroundTextStyle": "dark",
@@ -48,5 +47,8 @@
         "selectedIconPath": "images/tabBar/profile_selected.png"
       }
     ]
+  },
+  "usingComponents": {
+    "page-nav": "/components/pageNav/pageNav"
   }
 }

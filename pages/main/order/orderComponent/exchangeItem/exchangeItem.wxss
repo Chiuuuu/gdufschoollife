@@ -18,7 +18,7 @@
 }
 
 .exchange-item .info {
-  flex: 1;
+  width: calc(100% - 150rpx);
   height: 100%;
   line-height: 60rpx;
 
@@ -27,15 +27,27 @@
   justify-content: center;
 }
 
+.exchange-item .info .goods {
+  display: flex;
+  justify-content: space-between;
+}
+
 .exchange-item .info .goodsName {
   font-size: 50rpx;
   font-weight: 700;
   color: #333;
 }
-
+.exchange-item .info .price {
+  color: #8E0B02;
+  font-size: 42rpx;
+}
 .exchange-item .info .desc {
   font-size: 36rpx;
   color: #999;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .exchange-item .info .update {

@@ -1,4 +1,7 @@
 // pages/main/profile/profileComponent/profileItem/profileItem.js
+
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -20,15 +23,16 @@ Component({
    */
   methods: {
     navigate() {
+      let openid = app.globalData._openid
       let path = ''
       switch (this.data.item.title) {
         case '我的订单':
-          path = 'myOrderList'
+          path = 'myPushList'
+          break;
+        case '我的接单':
+          path = 'myPullList'
           break;
         case '私信':
-          path = ''
-          break;
-        case '绑定邮箱':
           path = ''
           break;
         case '退出登录':
@@ -36,7 +40,7 @@ Component({
           break;
       }
       wx.navigateTo({
-        url: `/pages/main/profile/${path}/${path}`
+        url: `/pages/main/profile/${path}/${path}?openid=${openid}`
       })
     }
   }

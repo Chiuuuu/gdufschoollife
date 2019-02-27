@@ -33,10 +33,11 @@
 }
 
 .package-item .info .located {
-  font-size: 50rpx;
+  font-size: 46rpx;
   font-weight: 700;
   color: #333;
 }
+
 
 .package-item .info .compony {
   font-size: 36rpx;

@@ -1,18 +1,34 @@
-// pages/main/order/exchange/exchangeDetail/exchangeDetail.js
-Page({
+// pages/main/profile/myOrderList/myOrderList.js
 
+wx.cloud.init()
+const db = wx.cloud.database()
+const _ = db.command
+
+Page({
   /**
    * 页面的初始数据
    */
   data: {
-
+    openid: null,
+    PpushList: null,
+    EpushList: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    // this.setData({
+    //   openid: options.openid
+    // })
+    db.collection('User_OrderList').where({_openid: options.openid}).get()
+    .then(res => {
+      this.setData({
+        openid: res.data[0]._openid,
+        PpushList: res.data[0].package_pushList,
+        EpushList: res.data[0].exchange_pushList,
+      })
+    })
   },
 
   /**

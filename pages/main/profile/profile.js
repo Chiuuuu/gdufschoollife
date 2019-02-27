@@ -14,12 +14,12 @@ Page({
         title: '我的订单'
       },
       {
-        icon: '/images/profile/message.png',
-        title: '私信'
+        icon: '/images/profile/myOrder.png',
+        title: '我的接单'
       },
       {
-        icon: '/images/profile/bind.png',
-        title: '绑定邮箱'
+        icon: '/images/profile/message.png',
+        title: '私信'
       },
       {
         icon: '/images/profile/quit.png',

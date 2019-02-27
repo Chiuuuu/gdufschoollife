@@ -1,0 +1,16 @@
+<!--pages/main/profile/myPushList/myPushList.wxml-->
+
+<view class="order-box">
+  <page-nav>
+    <view slot="package">
+      <block wx:for="{{PpushList}}" wx:key="{{item._id}}">
+        <p-item />
+      </block>
+    </view>
+    <view slot="exchange">
+      <block wx:for="{{EpushList}}" wx:key="{{item._id}}">
+        <e-item />
+      </block>
+    </view>
+  </page-nav>
+</view>

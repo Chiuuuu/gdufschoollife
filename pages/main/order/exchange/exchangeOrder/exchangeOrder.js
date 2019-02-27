@@ -22,7 +22,8 @@ Page({
     msgList: [
       {title: '您的姓名', name: 'name'},
       {title: '联系电话', name: 'phone'},
-      {title: '物品名称', name: 'goods'}
+      {title: '物品名称', name: 'goods'},
+      {title: '物品价格', name: 'price'},
     ],
     descVal: '',
     goodsImg: '',
@@ -129,7 +130,7 @@ Page({
    */
   formSubmit(e) {
     // console.log(e)
-    let {name, phone, goods} = e.detail.value
+    let {name, phone, price, goods} = e.detail.value
     wx.cloud.uploadFile({
       cloudPath: `ExchangeImage/${app.globalData._openid}_${(new Date()).getTime()}.png`, // 上传至云端的路径
       filePath: this.data.goodsImg, // 小程序临时文件路径
@@ -140,6 +141,7 @@ Page({
           fileID: res.fileID,
           name,
           phone,
+          price,
           goodsName: goods,
           desc: this.data.descVal,
           timeStamp: (new Date()).getTime()

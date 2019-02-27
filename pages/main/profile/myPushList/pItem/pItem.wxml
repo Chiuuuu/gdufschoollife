@@ -1,0 +1,16 @@
+<!--pages/main/profile/myPushList/pItem/pItem.wxml-->
+
+<view class="package-item">
+  <image wx:if="{{item.type === 'urgent'}}" src="/images/order/urgent.png" />
+  <image wx:elif="{{item.type === 'today'}}" src="/images/order/today.png" />
+  <image wx:else src="/images/order/normal.png" />
+  <view class="info">
+    <view class="top">
+      <view class="located">{{item.located}}({{item.kind}})</view>
+      <view class="compony">{{item.compony}}快递</view>
+    </view>
+    <image wx:if="{{}}" src="" style="width: 40rpx; height: 40rpx" />
+    <image wx:else src="" style="width: 40rpx; height: 40rpx" />
+  </view>
+</view>
+<view class=""></view>

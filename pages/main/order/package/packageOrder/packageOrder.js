@@ -11,6 +11,7 @@ Page({
    */
   data: {
     msgList: [
+      {title: '包裹种类', name: 'kind'},
       {title: '收件人', name: 'recv'},
       {title: '联系电话', name: 'phone'},
     ],
@@ -137,7 +138,7 @@ Page({
    * 表单提交
    */
   formSubmit(e) {
-    let {located, room, recv, phone, compony} = e.detail.value
+    let {located, room, kind, recv, phone, compony} = e.detail.value
     let type
     switch (this.data.defaultType) {
       case '佛系':
@@ -153,6 +154,7 @@ Page({
     let packageOrder = {
       located,
       room,
+      kind,
       recv,
       phone,
       compony,

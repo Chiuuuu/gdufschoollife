@@ -1,0 +1,44 @@
+<!--components/pageNav/pageNav.wxml-->
+
+<!-- 滑动选项 -->
+<view class="order-nav">
+  <view
+    data-index="0"
+    bindtap="tapChangeIndex"
+    class="order-nav-item"
+    style="color: {{currentIndex == 0 ? '#8E0B02': '#333'}}"
+    >
+    代取快递
+  </view>
+  <view
+    data-index="1"
+    bindtap="tapChangeIndex"
+    class="order-nav-item"
+    style="color: {{currentIndex == 1 ? '#8E0B02': '#333'}}"
+    >
+    二手交易
+  </view>
+  <view class="indicator" style="left: {{startX}}px"></view>
+</view>
+<!-- 利用轮播图组件实现滑动 -->
+<swiper
+  scroll-x="{{true}}"
+  class="order-scroll-body"
+  duration="{{300}}"
+  current="{{currentIndex}}"
+  bindchange="changeIndex"
+  >
+  <!-- 代取快递 -->
+  <swiper-item>
+    <scroll-view scroll-y="{{true}}" class="item-list">
+      <slot name="package"></slot>
+    </scroll-view>
+  </swiper-item>
+  <!-- 二手交易 -->
+  <swiper-item>
+    <scroll-view class="item-list">
+      <slot name="exchange"></slot>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+

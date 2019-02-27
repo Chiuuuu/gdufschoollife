@@ -14,9 +14,8 @@ Page({
     done: false,
     package: null,
     exchange: null,
-    currentIndex: 0,
-    pageWidth: 0,
-    startX: 0
+    showDetail: false,
+    detailDesc: ''
   },
 
   /**
@@ -30,11 +29,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    let pageWidth = wx.getSystemInfoSync().screenWidth / 2
-    // console.log(pageWidth)
-    this.setData({
-      pageWidth
-    })
+
   },
 
   /**
@@ -98,24 +93,31 @@ Page({
   },
 
   /**
-   * 监听页面滚动并改变当前index
+   * 监听点击商品详细描述
    */
-  changeIndex(e) {
-    let currentIndex = e.detail.current
+  clickDetail(e) {
+    // console.log(e.detail.desc)
     this.setData({
-      currentIndex,
-      startX: currentIndex * this.data.pageWidth
+      showDetail: true,
+      detailDesc: e.detail.desc
     })
   },
 
   /**
-   * 点击切换
+   * 确认订单
    */
-  tapChangeIndex(e) {
-    let currentIndex = e.currentTarget.dataset.index
+  confirmExchange() {
     this.setData({
-      currentIndex,
-      startX: currentIndex * this.data.pageWidth
+      showDetail: false,
+    })
+  },
+
+  /**
+   * 取消接单
+   */
+  cancelDetail() {
+    this.setData({
+      showDetail: false,
     })
   }
 })
