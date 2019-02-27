@@ -20,3 +20,11 @@ module.exports.updateCommentList = function(id, comment) {
     }
   })
 }
+
+module.exports.pullOrder = function(openID, orderID) {
+  return db.collection('User_OrderList').where({_openid: openID}).update({
+    data: {
+      pullList: _.push(orderID)
+    }
+  })
+}

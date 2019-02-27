@@ -2,5 +2,7 @@
   "navigationBarBackgroundColor": "#8E0B02",
   "navigationBarTextStyle": "white",
   "navigationBarTitleText": "个人信息",
-  "usingComponents": {}
+  "usingComponents": {
+    "profile-item": "./profileComponent/profileItem/profileItem"
+  }
 }

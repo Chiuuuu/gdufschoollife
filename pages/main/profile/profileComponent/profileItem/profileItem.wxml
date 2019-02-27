@@ -1,0 +1,6 @@
+<!--pages/main/profile/profileComponent/profileItem/profileItem.wxml-->
+
+<view class="icon-item" bindtap="navigate">
+  <image src="{{item.icon}}" />
+  <text style="border-bottom: {{index === 3 ? 'none' : '1px solid #ddd'}}">{{item.title}}</text>
+</view>

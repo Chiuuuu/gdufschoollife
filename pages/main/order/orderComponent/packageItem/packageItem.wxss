@@ -6,6 +6,10 @@
   border-bottom: 1px solid #ddd;
   box-sizing: border-box;
   padding: 0 30rpx;
+  background-color: #fff;
+
+  position: relative;
+  z-index: 2;
 
   display: flex;
   align-items: center;
@@ -42,5 +46,45 @@
 .package-item .info .deadline {
   font-size: 40rpx;
   color: #333;
+}
+
+.package-detail {
+  background-color: #eee;
+  font-size: 28rpx;
+  text-align: center;
+  height: 0;
+
+  position: relative;
+  top: -150rpx;
+  z-index: 1;
+
+  transition: all .3s
+}
+
+.show-detail {
+  height: 150rpx;
+  top: 0;
+}
+
+.package-detail .tips {
+  height: 60rpx;
+  line-height: 60rpx;
+  color: #8E0B02
+}
+
+.package-detail .det-controll {
+  width: 100%;
+  height: 80rpx;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.package-detail .det-controll button {
+  width: 40%;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
 }
 

@@ -7,10 +7,7 @@
 </view>
 
 <block class="user-controll" wx:for="{{iconList}}" wx:key="{{item.title}}">
-  <view class="icon-item">
-    <image src="{{item.icon}}" />
-    <text style="border-bottom: {{index === iconList.length -1 ? 'none' : '1px solid #ddd'}}">{{item.title}}</text>
-  </view>
+  <profile-item style="width: 100%" item="{{item}}" index="{{index}}" />
 </block>
 
 

@@ -10,7 +10,7 @@
     "pages/main/profile/profile",
     "pages/main/nearby/nearbyComment/nearbyComment",
     "pages/main/order/exchange/exchangeDetail/exchangeDetail",
-    "pages/main/order/package/packageDetail/packageDetail"
+    "pages/main/profile/myOrderList/myOrderList"
   ],
   "window": {
     "backgroundTextStyle": "dark",

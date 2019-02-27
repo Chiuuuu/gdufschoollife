@@ -1,6 +1,6 @@
 <!--pages/main/order/orderComponent/orderItem/orderItem.wxml-->
 
-<view class="package-item">
+<view class="package-item" bindtap="getDetail">
   <image wx:if="{{type === 'urgent'}}" src="/images/order/urgent.png" />
   <image wx:elif="{{type === 'today'}}" src="/images/order/today.png" />
   <image wx:else src="/images/order/normal.png" />
@@ -10,5 +10,14 @@
       <view class="compony">{{compony}}快递</view>
     </view>
     <view class="deadline">送达时间: {{deadline}}</view>
+  </view>
+</view>
+
+<!-- 详细模块 -->
+<view wx:show="{{showDetail}}" class="package-detail {{showDetail ? 'show-detail' : ''}}">
+  <view class="tips">必须要接下订单才可以获得更详细的信息哦!</view>
+  <view class="det-controll">
+    <button bindtap="confirmOrder" style="background-color: #8E0B02; color: #fff">接单</button>
+    <button bindtap="hideDetail">取消</button>
   </view>
 </view>
