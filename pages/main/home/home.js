@@ -1,4 +1,9 @@
 // pages/main/home/home.js
+
+// 初始化数据库
+wx.cloud.init()
+const db = wx.cloud.database()
+
 Page({
 
   /**

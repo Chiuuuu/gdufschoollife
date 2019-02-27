@@ -4,3 +4,60 @@
 .comment-list {
   width: 100%;
 }
+
+.comment-mask {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.4);
+
+  position: fixed;
+  z-index: 99;
+}
+
+.comment-mask .blur-area {
+  width: 100%;
+  height: 386rpx;
+  background-color: transparent;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.comment-mask .update {
+  width: 100%;
+  height: 300rpx;
+  background-color: #fff;
+
+  position: absolute;
+  top: 386rpx;
+  left: 0;
+}
+
+.comment-mask .update textarea {
+  width: 540rpx;
+  height: 100%;
+}
+
+.comment-mask .controller {
+  flex: 1;
+  height: 300rpx;
+  background-color: #ccc;
+
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.comment-mask .controller button {
+  outline: none;
+  border: none;
+  width: 160rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  color: #ccc;
+  background-color: #fff;
+  border-radius: 8rpx;
+}

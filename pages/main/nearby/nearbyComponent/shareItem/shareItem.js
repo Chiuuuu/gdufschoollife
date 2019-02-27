@@ -9,8 +9,10 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        let {avatar, name, timeStamp, content, comment, like, liked} = newVal
+        let {_id, _openid, avatar, name, timeStamp, content, comment, like, liked} = newVal
         this.setData({
+          _id,
+          _openid,
           avatar,
           name,
           timeStamp,
@@ -27,6 +29,8 @@ Component({
    * 组件的初始数据
    */
   data: {
+    _id: null,
+    _openid: null,
     avatar: null,
     name: null,
     timeStamp: null,
@@ -42,19 +46,17 @@ Component({
   methods: {
     // 点击评论按钮
     clickComment() {
-      console.log(this.data.shareItem)
-      let data = JSON.stringify(this.data.shareItem)
-      let index = this.data.itemIndex
+      let id = this.data._id
       // 跳转到正文界面
       wx.navigateTo({
-        url: `/pages/main/nearby/nearbyComment/nearbyComment?data=${data}&index=${index}`
+        url: `/pages/main/nearby/nearbyComment/nearbyComment?id=${id}`
       })
     },
     // 点击点赞按钮
     clickLike() {
       // console.log(e)
       let liked = !this.data.liked
-      this.triggerEvent('clickLike', {add: liked})
+      this.triggerEvent('clickLike', {add: liked, id: this.data._id})
     }
   }
 })

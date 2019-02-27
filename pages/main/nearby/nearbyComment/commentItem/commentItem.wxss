@@ -12,3 +12,7 @@
 .comment-item .share-box {
   border-bottom: 1px dashed #bbb;
 }
+
+.comment-item .content {
+  margin: 20rpx 0;
+}

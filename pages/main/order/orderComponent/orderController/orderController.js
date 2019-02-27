@@ -33,9 +33,6 @@ Component({
               url: '/pages/main/order/exchangeOrder/exchangeOrder'
             })
           }
-        },
-        fail(res) {
-          console.log(res.errMsg)
         }
       })
     }

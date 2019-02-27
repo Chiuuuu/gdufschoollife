@@ -1,4 +1,9 @@
 // pages/main/packageOrder/packageOrder.js
+
+let app = getApp()
+wx.cloud.init()
+const db = wx.cloud.database()
+
 Page({
 
   /**
@@ -6,13 +11,14 @@ Page({
    */
   data: {
     msgList: [
-      {title: '地址', name: 'addr'},
+      {title: '地址', name: 'located'},
+      {title: '宿舍号', name: 'room'},
       {title: '收件人', name: 'recv'},
       {title: '联系电话', name: 'phone'},
       {title: '快递公司', name: 'compony'},
     ],
-    typeList: ['一般', '尽快', '加急'],
-    defaultType: '一般'
+    typeList: ['佛系', '今天内', '2小时内'],
+    defaultType: '佛系'
   },
 
   /**
@@ -85,15 +91,27 @@ Page({
    * 表单提交
    */
   formSubmit(e) {
-    console.log(e)
-    let {addr, recv, phone, compony} = e.detail.value
+    let {located, room, recv, phone, compony} = e.detail.value
+    let type
+    switch (this.data.defaultType) {
+      case '佛系':
+        type = 'normal'
+        break;
+      case '今天内':
+        type = 'today'
+        break;
+      case '2小时内':
+        type = 'urgent'
+        break;
+    }
     let packageOrder = {
-      addr,
+      located,
+      room,
       recv,
       phone,
       compony,
-      defaultType: this.data.defaultType,
-      timeStamp: (new Date()).getTime()
+      type,
+      deadline: this.data.defaultType,
     }
 
     let readyToNav = true
@@ -109,9 +127,14 @@ Page({
     }
 
     if (readyToNav) {
-      wx.navigateBack({
-        delta: 1
+      db.collection('Order_PackageList').add({
+        data: packageOrder
+      }).then(res => {
+        wx.navigateBack({
+          delta: 1
+        })
       })
+
     }
   }
 })

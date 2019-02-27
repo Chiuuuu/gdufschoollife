@@ -2,54 +2,83 @@
 
 <wxs module="filter" src="../../../../utils/tools.wxs" />
 
-<view class="share-box">
+<view wx:if="{{comment !== null}}">
+  <view class="share-box">
 
-  <!-- 发布者信息 -->
-  <view class="user-info">
-    <!-- 头像 -->
-    <view class="avatar">
-      <image src="{{avatar}}" style="width: 100%; height: 100%" />
+    <!-- 发布者信息 -->
+    <view class="user-info">
+      <!-- 头像 -->
+      <view class="avatar">
+        <image src="{{avatar}}" style="width: 100%; height: 100%" />
+      </view>
+      <!-- 信息 -->
+      <view class="info">
+        <view style="color: #333; font-weight: 500">{{name}}</view>
+        <view style="font-size: 24rpx">{{filter.setDate(timeStamp)}}</view>
+      </view>
     </view>
-    <!-- 信息 -->
-    <view class="info">
-      <view style="color: #333; font-weight: 500">{{name}}</view>
-      <view style="font-size: 24rpx">{{filter.setDate(timeStamp)}}</view>
+
+    <!-- 正文 -->
+    <view class="content">{{content}}</view>
+
+    <!-- 下方操作按钮 -->
+    <view class="controller" style="color: #999">
+      <view class="icon-bar">
+        <image class="icon" src="/images/nearby/forward.png" />
+        <text>转发</text>
+      </view>
+      <view class="icon-bar" bindtap="clickComment">
+        <image class="icon" src="/images/nearby/comment.png" />
+        <!-- 有评论,显示评论数 -->
+        <text>{{comment.length !== 0 ? comment.length : '评论'}}</text>
+      </view>
+      <view class="icon-bar" bindtap="clickLike">
+        <!-- 已点赞,显示点赞数 -->
+        <block wx:if="{{liked}}">
+          <image class="icon" src="/images/nearby/didLike.png" />
+          <text style="color: #E75856">{{like}}</text>
+        </block>
+        <!-- 没点赞,显示点赞字样 -->
+        <block wx:else>
+          <image class="icon" src="/images/nearby/like.png" />
+          <text>点赞</text>
+        </block>
+      </view>
     </view>
   </view>
 
-  <!-- 正文 -->
-  <view class="content">{{content}}</view>
-
-  <!-- 下方操作按钮 -->
-  <view class="controller" style="color: #999">
-    <view class="icon-bar">
-      <image class="icon" src="/images/nearby/forward.png" />
-      <text>转发</text>
-    </view>
-    <view class="icon-bar" bindtap="clickComment">
-      <image class="icon" src="/images/nearby/comment.png" />
-      <!-- 有评论,显示评论数 -->
-      <text>{{comment.length !== 0 ? comment.length : '评论'}}</text>
-    </view>
-    <view class="icon-bar" bindtap="clickLike">
-      <!-- 已点赞,显示点赞数 -->
-      <block wx:if="{{liked}}">
-        <image class="icon" src="/images/nearby/didLike.png" />
-        <text style="color: #E75856">{{like}}</text>
-      </block>
-      <!-- 没点赞,显示点赞字样 -->
-      <block wx:else>
-        <image class="icon" src="/images/nearby/like.png" />
-        <text>点赞</text>
-      </block>
-    </view>
+  <!-- 评论列表 -->
+  <view class="comment-list">
+    <block wx:for="{{comment}}" wx:key="{{index}}">
+      <comment-item
+        comment-item="{{item}}"
+        item-id="{{id}}"
+        item-index="{{index}}"
+        bindclickLight="clickLight"
+        />
+    </block>
   </view>
 </view>
 
-<!-- 评论列表 -->
-<view class="comment-list">
-  <block wx:for="{{comment}}" wx:key="{{index}}">
-    <comment-item comment-item="{{item}}" data-index="{{index}}" bindclickLight="clickLight" />
-  </block>
-</view>
+<view wx:else>加载中...</view>
 
+<view wx:if="{{mask}}" class="comment-mask">
+  <view class="blur-area" bindtap="cancelComment"></view>
+  <form bindsubmit="sendComment" class="update">
+    <view style="width: 100%; height: 100%; display: flex">
+      <textarea
+        name="commentVal"
+        adjust-position="{{false}}"
+        fixed
+        auto-height
+        focus
+        bindinput="{{saveValue}}"
+        placeholder="请发表您的评论...">
+        </textarea>
+      <view class="controller">
+        <button form-type="submit">发送</button>
+        <button bindtap="cancelComment">取消</button>
+      </view>
+    </view>
+  </form>
+</view>

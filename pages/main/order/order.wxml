@@ -1,7 +1,7 @@
 <!--pages/order/order.wxml-->
 
 
-<view class="order-box" ref="body">
+<view class="order-box" wx:if="{{done}}" ref="body">
   <!-- 滑动选项 -->
   <view class="order-nav">
     <view
@@ -33,7 +33,7 @@
     <!-- 代取快递 -->
     <swiper-item>
       <scroll-view scroll-y="{{true}}" class="item-list">
-        <block wx:for="{{package}}" wx:key="{{index}}">
+        <block wx:for="{{packageList}}" wx:key="{{index}}">
           <package-item class="order-item" package-item="{{item}}" />
         </block>
       </scroll-view>
@@ -41,7 +41,7 @@
     <!-- 二手交易 -->
     <swiper-item>
       <scroll-view class="item-list">
-        <block wx:for="{{exchange}}" wx:key="{{index}}">
+        <block wx:for="{{exchangeList}}" wx:key="{{index}}">
           <exchange-item class="order-item" exchange-item="{{item}}" />
         </block>
       </scroll-view>
@@ -49,4 +49,7 @@
   </swiper>
   <!-- 圆形按钮 -->
   <order-controller />
+</view>
+<view wx:else>
+  加载中...
 </view>

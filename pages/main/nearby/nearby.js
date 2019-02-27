@@ -1,6 +1,12 @@
 // pages/nearby/nearby.js
 let app = getApp()
 
+// 初始化数据库
+wx.cloud.init()
+const db = wx.cloud.database()
+
+const addLike = require('../../../utils/database.js').addLike
+
 Page({
 
   /**
@@ -8,7 +14,7 @@ Page({
    */
   data: {
     poster: '/images/poster.jpg',
-    shareList: app.globalData.shareList
+    shareList: null
   },
 
   /**
@@ -29,7 +35,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    db.collection('Nearby_CommentList').get()
+    .then(res => {
+      this.setData({
+        shareList: res.data.reverse()
+      })
+    })
   },
 
   /**
@@ -50,7 +61,12 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    db.collection('Nearby_CommentList').get()
+    .then(res => {
+      this.setData({
+        shareList: res.data.reverse()
+      })
+    })
   },
 
   /**
@@ -70,7 +86,9 @@ Page({
   clickLike(e) {
     // console.log(e)
     let index = e.currentTarget.dataset.index
+    // true: 未点赞 -> 点赞, false: 点赞 -> 未点赞
     let add = e.detail.add
+    let id = e.detail.id
     // 子组件传过来的参数, 判断是否点赞数+1和用户是否点过赞
     let shareList = this.data.shareList
     shareList[index].like = add ? shareList[index].like + 1 : shareList[index].like - 1
@@ -79,5 +97,7 @@ Page({
       shareList
     })
 
+    // 调用云函数更新数据库
+    addLike(id, add ? true : false)
   }
 })

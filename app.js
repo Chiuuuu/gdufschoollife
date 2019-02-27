@@ -1,4 +1,7 @@
 //app.js
+
+wx.cloud.init()
+const db = wx.cloud.database()
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -32,56 +35,20 @@ App({
         }
       }
     })
+
+    wx.cloud.callFunction({
+      name: 'getUserInfo',
+    }).then(res => {
+      this.globalData._openid = res.result.openid
+    })
+
+  },
+  onLoad() {
+
   },
   globalData: {
     userInfo: null,
-    shareList: [
-      {
-        avatar: '/images/nearby/didLike.png',
-        name: 'xxx',
-        timeStamp: (new Date()).getTime(),
-        content: '道路千万条,学习第一条,寒假不努力,开学两行泪',
-        comment: [
-          {
-            avatar: '/images/nearby/didLike.png',
-            name: 'xxx',
-            timeStamp: (new Date()).getTime(),
-            content: '1',
-            lighted: false
-          },
-          {
-            avatar: '/images/nearby/didLike.png',
-            name: 'xxx',
-            timeStamp: (new Date()).getTime(),
-            content: '2',
-            lighted: false
-          },
-          {
-            avatar: '/images/nearby/didLike.png',
-            name: 'xxx',
-            timeStamp: (new Date()).getTime(),
-            content: '3',
-            lighted: false
-          },
-        ],
-        like: 5,
-        liked: false
-      },
-      {
-        avatar: '/images/nearby/didLike.png',
-        name: 'xxx',
-        timeStamp: (new Date()).getTime(),
-        content: '道路千万条,学习第一条,寒假不努力,开学两行泪',
-        comment: [],
-        like: 5,
-        liked: true
-      },
-    ],
-    clickLightBtn(itemIndex, commentIndex) {
-      console.log(itemIndex, commentIndex)
-      let lighted = this.shareList[itemIndex].comment[commentIndex].lighted
-      this.shareList[itemIndex].comment[commentIndex].lighted = !lighted
-    }
+    _openid: null,
   },
 
 })

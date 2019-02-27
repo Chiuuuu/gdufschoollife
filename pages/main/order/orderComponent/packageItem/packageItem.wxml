@@ -9,6 +9,6 @@
       <view class="located">{{located}}</view>
       <view class="compony">{{compony}}快递</view>
     </view>
-    <view class="deadline">截止至: {{deadline}}</view>
+    <view class="deadline">送达时间: {{deadline}}</view>
   </view>
 </view>

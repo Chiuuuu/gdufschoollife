@@ -1,4 +1,5 @@
 // pages/main/nearby/nearbyComment/commentList/commentList.js
+
 Component({
   /**
    * 组件的属性列表
@@ -8,16 +9,19 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        let {avatar, name, timeStamp, content, lighted} = newVal
+        let {avatar, name, timeStamp, content, light, lighted} = newVal
         this.setData({
           avatar,
           name,
           timeStamp,
           content,
+          light,
           lighted
         })
       }
-    }
+    },
+    itemIndex: Number,
+    itemId: String
   },
 
   /**
@@ -28,6 +32,7 @@ Component({
     name: null,
     timeStamp: null,
     content: null,
+    light: null,
     lighted: null
   },
 
@@ -40,10 +45,15 @@ Component({
      */
     clickLight() {
       let lighted = !this.data.lighted
+      let light = this.data.light += lighted ? 1 : -1
       this.setData({
-        lighted,
+        light,
+        lighted
       })
-      this.triggerEvent('clickLight')
+      this.triggerEvent('clickLight', {
+        index: this.data.itemIndex,
+        lighted: lighted
+      })
     }
   }
 })

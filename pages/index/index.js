@@ -1,6 +1,9 @@
 //index.js
 //获取应用实例
 const app = getApp()
+// 初始化数据库
+wx.cloud.init()
+const db = wx.cloud.database()
 
 Page({
   data: {
@@ -43,6 +46,7 @@ Page({
         }
       })
     }
+
   },
   getUserInfo: function(e) {
     console.log(e)

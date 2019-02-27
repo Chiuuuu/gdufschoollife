@@ -10,12 +10,13 @@
     </view>
     <!-- 信息 -->
     <view class="info">
-      <view style="color: #333; font-weight: 500">{{name}}</view>
+      <view style="color: #333; font-size: 28rpx; margin-top: 30rpx">{{name}}</view>
       <view style="font-size: 24rpx">{{filter.setDate(timeStamp)}}</view>
     </view>
     <view class="light" bindtap="clickLight">
       <image class="icon" wx:if="{{lighted}}" src="/images/nearby/lighted.png" />
       <image class="icon" wx:else src="/images/nearby/light.png" />
+      <text wx:if="{{lighted}}" style="color: #FBF672; font-size: 24rpx">{{light}}</text>
     </view>
   </view>
 
