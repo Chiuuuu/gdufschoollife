@@ -26,11 +26,11 @@ Component({
           // console.log(res.tapIndex)
           if (res.tapIndex === 0) {
             wx.navigateTo({
-              url: '/pages/main/order/packageOrder/packageOrder'
+              url: '/pages/main/order/package/packageOrder/packageOrder'
             })
           }else if (res.tapIndex === 1) {
             wx.navigateTo({
-              url: '/pages/main/order/exchangeOrder/exchangeOrder'
+              url: '/pages/main/order/exchange/exchangeOrder/exchangeOrder'
             })
           }
         }

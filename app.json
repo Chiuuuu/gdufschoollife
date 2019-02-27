@@ -5,13 +5,15 @@
     "pages/main/home/home",
     "pages/main/nearby/nearby",
     "pages/main/order/order",
-    "pages/main/order/exchangeOrder/exchangeOrder",
-    "pages/main/order/packageOrder/packageOrder",
+    "pages/main/order/exchange/exchangeOrder/exchangeOrder",
+    "pages/main/order/package/packageOrder/packageOrder",
     "pages/main/profile/profile",
-    "pages/main/nearby/nearbyComment/nearbyComment"
+    "pages/main/nearby/nearbyComment/nearbyComment",
+    "pages/main/order/exchange/exchangeDetail/exchangeDetail",
+    "pages/main/order/package/packageDetail/packageDetail"
   ],
   "window": {
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black",

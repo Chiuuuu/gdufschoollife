@@ -1,4 +1,10 @@
 // pages/main/exchangeOrder/exchangeOrder.js
+const app = getApp()
+
+wx.cloud.init()
+const db = wx.cloud.database()
+const _ = db.command
+
 Page({
 
   /**
@@ -19,7 +25,8 @@ Page({
       {title: '物品名称', name: 'goods'}
     ],
     descVal: '',
-    goodsImg: ''
+    goodsImg: '',
+    fileID: '',
   },
 
   /**
@@ -82,7 +89,6 @@ Page({
    * 获取描述信息
    */
   getDescVal(e) {
-    console.log(e)
     this.setData({
       descVal: e.detail.value
     })
@@ -97,16 +103,10 @@ Page({
       sizeType: ['original', 'compressed'],	// 指定原图或者压缩图
       sourceType: ['album', 'camera'],	// 指定图片来源
       success: res => {
-        // console.log(res.tempFilePaths)
-        // 保存到本地
-        wx.saveFile({
-          tempFilePath: res.tempFilePaths[0],
-          success: res => {
-            // console.log(res.savedFilePath)
-            this.setData({
-              goodsImg: res.savedFilePath
-            })
-          }
+        // console.log(res)
+        // 获取最新一张图片
+        this.setData({
+          goodsImg: res.tempFilePaths[res.tempFilePaths.length - 1]
         })
       }
     })
@@ -125,79 +125,55 @@ Page({
   },
 
   /**
-   * 替换图片
-   */
-  changeImage() {
-    wx.chooseImage({
-      count: 1,	// 默认为9
-      sizeType: ['original', 'compressed'],	// 指定原图或者压缩图
-      sourceType: ['album', 'camera'],	// 指定图片来源
-      success: res => {
-        // console.log(res.tempFilePaths)
-        // 删除前一张图片
-        wx.getSavedFileList({
-          success(res) {
-            let len = res.fileList.length
-            if (len > 0) {
-              // console.log(res)
-              // 删除最近保存的一张图片,即刚才选择的那张
-              wx.removeSavedFile({
-                filePath: res.fileList[len - 1].filePath,
-                complete(res) {
-                  // console.log(res)
-                }
-              })
-            }
-          }
-        })
-        // 将新图片保存到本地
-        wx.saveFile({
-          tempFilePath: res.tempFilePaths[0],
-          success: res => {
-            // console.log(res)
-            this.setData({
-              goodsImg: res.savedFilePath
-            })
-          }
-        })
-      }
-    })
-  },
-
-  /**
    * 表单提交
    */
   formSubmit(e) {
-    console.log(e)
+    // console.log(e)
     let {name, phone, goods} = e.detail.value
-    let exchangeOrder = {
-      name,
-      phone,
-      goods,
-      descVal: this.data.descVal,
-      goodsImg: this.data.goodsImg,
-      timeStamp: (new Date()).getTime()
-    }
-    // console.log(exchangeOrder)
-    
-    let readyToNav = true // 跳转标记
+    wx.cloud.uploadFile({
+      cloudPath: `ExchangeImage/${app.globalData._openid}_${(new Date()).getTime()}.png`, // 上传至云端的路径
+      filePath: this.data.goodsImg, // 小程序临时文件路径
+      success: res => {
+        // 返回文件 ID
+        // console.log(res.fileID)
+        let exchangeOrder = {
+          fileID: res.fileID,
+          name,
+          phone,
+          goodsName: goods,
+          desc: this.data.descVal,
+          timeStamp: (new Date()).getTime()
+        }
+        // console.log(exchangeOrder)
 
-    for (let key in exchangeOrder) {
-      // 除图片外其他属性为空会提示完善信息
-      if (key !=='goodsImg' && exchangeOrder[key].length === 0) {
-        wx.showToast({
-          title: '请完善信息',
-          icon: 'none',
-          mask: true
-        })
-        readyToNav = false
-      }
-    }
+        let readyToNav = true // 跳转标记
+        for (let key in exchangeOrder) {
+          // 除图片外其他属性为空会提示完善信息
+          if (exchangeOrder[key].length === 0) {
+            wx.showToast({
+              title: '请完善信息',
+              icon: 'none',
+              mask: true
+            })
+            readyToNav = false
+          }
+        }
 
-    if (readyToNav) {
-      wx.navigateBack({
-        delta: 1
-      })
-    }
+        if (readyToNav) {
+          db.collection('Order_ExchangeList').add({
+            data: exchangeOrder
+          })
+          .then(res => {
+            wx.navigateBack({
+              delta: 1
+            })
+          })
+          .catch(err => console.log(err))
+        }
+      },
+      fail: console.error
+    })
+
+
   }
 })

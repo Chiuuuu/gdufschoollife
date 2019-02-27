@@ -21,7 +21,7 @@
   </view>
 
   <!-- 正文 -->
-  <view class="content">{{content}}</view>
+  <view class="content" bindtap="clickComment">{{content}}</view>
 
   <!-- 下方操作按钮 -->
   <view class="controller">

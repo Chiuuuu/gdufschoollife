@@ -28,7 +28,7 @@
     <!-- 判断是否已经添加了图片 -->
     <view wx:if="{{goodsImg}}" class="exchange-add">
       <image src="{{goodsImg}}" bindtap="previewImage" data-src="{{goodsImg}}" />
-      <image src="/images/order/change.png" bindtap="changeImage" />
+      <image src="/images/order/change.png" bindtap="addImage" />
     </view>
     <!-- 若没有,则可以点击添加 -->
     <view wx:else class="exchange-add" bindtap="addImage">

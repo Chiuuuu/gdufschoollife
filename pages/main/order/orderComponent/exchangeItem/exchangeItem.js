@@ -8,15 +8,35 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        let {image, goodsName, desc, timeStamp, name, phone} = newVal
-        this.setData({
-          image,
-          goodsName,
-          desc,
-          timeStamp,
-          name,
-          phone
-        })
+        let {fileID, image, goodsName, desc, timeStamp, name, phone} = newVal
+        if (fileID) {
+          wx.cloud.downloadFile({
+            fileID: fileID, // 文件 ID
+            success: res => {
+              // 返回临时文件路径
+              // console.log(res.tempFilePath)
+              image = res.tempFilePath
+              this.setData({
+                image,
+                goodsName,
+                desc,
+                timeStamp,
+                name,
+                phone
+              })
+            },
+            fail: console.error
+          })
+        }else {
+          this.setData({
+            image,
+            goodsName,
+            desc,
+            timeStamp,
+            name,
+            phone
+          })
+        }
       }
     }
   },

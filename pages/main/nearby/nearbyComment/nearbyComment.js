@@ -34,7 +34,7 @@ Page({
     db.collection('Nearby_CommentList').doc(options.id).get()
     .then(res => {
       let {avatar, name, timeStamp, content, comment, like, liked} = res.data
-      console.log(comment)
+      // console.log(comment)
       this.setData({
         id: options.id,
         avatar,

@@ -14,7 +14,6 @@ module.exports.addLike = function(id, lighted) {
 }
 
 module.exports.updateCommentList = function(id, comment) {
-  console.log(comment)
   db.collection('Nearby_CommentList').doc(id).update({
     data: {
       comment,

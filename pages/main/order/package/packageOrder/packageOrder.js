@@ -11,12 +11,19 @@ Page({
    */
   data: {
     msgList: [
-      {title: '地址', name: 'located'},
-      {title: '宿舍号', name: 'room'},
       {title: '收件人', name: 'recv'},
       {title: '联系电话', name: 'phone'},
-      {title: '快递公司', name: 'compony'},
     ],
+    build: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
+    buildVal: null,
+    room: [
+      ['a','b','c','d','无'],
+      ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
+      ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20']
+    ],
+    roomVal: null,
+    compony: ['顺丰', '圆通', '中通', '申通', '百世', '邮政', '韵达', '京东', '天天'],
+    componyVal: null,
     typeList: ['佛系', '今天内', '2小时内'],
     defaultType: '佛系'
   },
@@ -78,6 +85,45 @@ Page({
   },
 
   /**
+   * 宿舍地址
+   * @param {*} e
+   */
+  bindBuildChange(e) {
+    // console.log(e)
+    this.setData({
+      buildVal: this.data.build[e.detail.value] + '栋'
+    })
+  },
+  /**
+   * 房号
+   * @param {*} e
+   */
+  bindRoomChange(e) {
+    console.log(e)
+    let room = this.data.room
+    let roomVal = ''
+    e.detail.value.map((item, index) => {
+      roomVal += room[index][item]
+    })
+    // console.log(roomVal)
+    if (roomVal.indexOf('无') !== -1) {
+      roomVal = roomVal.slice(1)
+    }
+    this.setData({
+      roomVal,
+    })
+  },
+  /**
+   * 快递公司
+   * @param {*} e
+   */
+  bindComponyChange(e) {
+    this.setData({
+      componyVal: this.data.compony[e.detail.value] + '快递'
+    })
+  },
+
+  /**
    * 按钮数据
    */
   radioChange(e) {
@@ -113,7 +159,7 @@ Page({
       type,
       deadline: this.data.defaultType,
     }
-
+    // console.log(packageOrder)
     let readyToNav = true
     for (let key in packageOrder) {
       if (packageOrder[key].length === 0) {
@@ -134,7 +180,6 @@ Page({
           delta: 1
         })
       })
-
     }
   }
 })
