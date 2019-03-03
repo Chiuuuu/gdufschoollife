@@ -10,27 +10,27 @@
   <view class="order-message">
     <view class="title">地址</view>
     <picker mode="selector" range="{{build}}" bindchange="bindBuildChange">
-      <input class="message" name="located" placeholder="点击选择" value="{{buildVal}}" />
+      <input disabled class="message" name="located" placeholder="点击选择" value="{{buildVal}}" />
     </picker>
   </view>
   <!-- 房号 -->
   <view class="order-message">
     <view class="title">房号</view>
     <picker mode="multiSelector" range="{{room}}" bindchange="bindRoomChange">
-      <input class="message" name="room" placeholder="点击选择" value="{{roomVal}}" />
+      <input disabled class="message" name="room" placeholder="点击选择" value="{{roomVal}}" />
+    </picker>
+  </view>
+  <!-- 快递公司 -->
+  <view class="order-message">
+    <view class="title">快递公司</view>
+    <picker mode="selector" range="{{compony}}" bindchange="bindComponyChange">
+      <input disabled class="message" name="compony" placeholder="点击选择" value="{{componyVal}}" />
     </picker>
   </view>
   <!-- 信息input -->
   <block wx:for="{{msgList}}" wx:key="{{index}}">
     <template is="orderMessage" data="{{...item}}"></template>
   </block>
-  <!-- 快递公司 -->
-  <view class="order-message">
-    <view class="title">快递公司</view>
-    <picker mode="selector" range="{{compony}}" bindchange="bindComponyChange">
-      <input class="message" name="compony" placeholder="点击选择" value="{{componyVal}}" />
-    </picker>
-  </view>
   <!-- 是否加急 -->
   <radio-group class="radio-group" bindchange="radioChange">
     <view class="title" >是否加急</view>

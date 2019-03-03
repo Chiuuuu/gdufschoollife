@@ -24,10 +24,11 @@
 .package-item .info {
   flex: 1;
   height: 100%;
-  line-height: 100rpx;
+  line-height: 66rpx;
 }
 
 .package-item .info .top {
+  flex: 1;
   display: flex;
   justify-content: space-between;
 }
@@ -47,6 +48,11 @@
 .package-item .info .deadline {
   font-size: 40rpx;
   color: #333;
+}
+
+.package-item .info .update {
+  font-size: 32rpx;
+  color: #999;
 }
 
 .package-detail {
@@ -88,4 +94,6 @@
   line-height: 60rpx;
   font-size: 28rpx;
 }
+
+
 

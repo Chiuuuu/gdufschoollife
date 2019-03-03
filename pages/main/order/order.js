@@ -1,9 +1,11 @@
 // pages/order/order.js
-const app = getApp()
 
-// 初始化数据
-wx.cloud.init()
-const db = wx.cloud.database()
+const app = getApp()
+const getDataByOptions = require('../../../utils/database').getDataByOptions
+const getCourier = require('../../../utils/database').getCourier
+const addCourier = require('../../../utils/database').addCourier
+const updateCourier = require('../../../utils/database').updateCourier
+const takeOrder = require('../../../utils/database').takeOrder
 
 Page({
 
@@ -14,8 +16,16 @@ Page({
     done: false,
     package: null,
     exchange: null,
+
+    // 订单信息
     showDetail: false,
-    detailDesc: ''
+    detailDesc: '',
+    confirmID: null,
+
+    // 快递员信息
+    courierInfo: null,
+    hideForm: true,
+    empty: ''
   },
 
   /**
@@ -36,7 +46,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.getDataBase()
+    let databaseOptions = {isTaken: false}
+    getDataByOptions(databaseOptions, this)
+    getCourier(app.globalData._openid).then(res => {
+      if (res.data[0]) {
+        this.setData({
+          courierInfo: res.data[0],
+          showDetail: false
+        })
+      }
+    })
   },
 
   /**
@@ -57,7 +76,8 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-    this.getDataBase()
+    let databaseOptions = {isTaken: false}
+    getDataByOptions(databaseOptions, this)
   },
 
   /**
@@ -74,21 +94,51 @@ Page({
 
   },
 
-  /**
-   * 获取数据库中的最新数据
-   * @param {*}
-   */
-  getDataBase() {
-    let getPackage = db.collection('Order_PackageList').get()
-    let getExchange = db.collection('Order_ExchangeList').get()
-
-    Promise.all([getPackage, getExchange])
-    .then(([packageList, exchangeList]) => {
-      this.setData({
-        done: true,
-        packageList: packageList.data,
-        exchangeList: exchangeList.data
+  // 隐藏表单
+  hideForm() {
+    this.setData({
+      hideForm: true
+    })
+  },
+  // 弹出表单
+  showForm(e) {
+    if (e.detail.showDetail) e.detail.showDetail()
+    this.setData({
+      postType: e.detail.type,
+      hideForm: false,
+      empty: ''
+    })
+  },
+  // 添加快递员信息
+  postCourierInfo(e) {
+    let courierInfo = {...e.detail.value}
+    let courier, title
+    if (this.data.postType === 'insert') {
+      // 将信息添加入数据库并更新data数据
+      courier = addCourier(courierInfo)
+      title = '请重新接单'
+    }else if (this.data.postType === 'update') {
+      // 更新数据
+      courier = updateCourier(this.data.courierInfo._id, courierInfo)
+      title = '改绑成功'
+    }
+    courier.then(result => {
+      // 操作成功
+      wx.showToast({
+        title: title,
+        icon: 'success',
+        duration: 2000
       })
+      // 隐藏表单
+      this.hideForm()
+      // 重新获取信息
+      getCourier(app.globalData._openid).then(res => {
+        this.setData({
+          courierInfo: res.data[0]
+        })
+      })
+    }).catch(err => {
+      throw err
     })
   },
 
@@ -99,16 +149,30 @@ Page({
     // console.log(e.detail.desc)
     this.setData({
       showDetail: true,
-      detailDesc: e.detail.desc
+      detailDesc: e.detail.desc,
+      confirmID: e.detail.id
     })
   },
 
   /**
-   * 确认订单
+   * 确认交易订单
    */
   confirmExchange() {
-    this.setData({
-      showDetail: false,
+    wx.showModal({
+      title: '请确认',
+      content: '确认订单后,将获取卖家更详细的信息\n注: 本平台仅支持线下当面交易',
+      confirmColor: '#8E0B02',
+      success: (res) => {
+        if (res.confirm) {
+          let openid = app.globalData._openid
+          takeOrder(this.data.confirmID, openid, 'exchange')
+          this.setData({
+            showDetail: false
+          })
+        } else if (res.cancel) {
+          this.cancelDetail()
+        }
+      }
     })
   },
 
@@ -121,3 +185,5 @@ Page({
     })
   }
 })
+
+

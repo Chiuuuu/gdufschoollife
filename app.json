@@ -9,7 +9,8 @@
     "pages/main/order/package/packageOrder/packageOrder",
     "pages/main/profile/profile",
     "pages/main/nearby/nearbyComment/nearbyComment",
-    "pages/main/profile/myPushList/myPushList"
+    "pages/main/profile/myPushList/myPushList",
+    "pages/main/profile/myTakenList/myTakenList"
   ],
   "window": {
     "backgroundTextStyle": "dark",

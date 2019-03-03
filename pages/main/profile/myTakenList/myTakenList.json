@@ -1,7 +1,7 @@
 {
   "navigationBarBackgroundColor": "#8E0B02",
   "navigationBarTextStyle": "white",
-  "navigationBarTitleText": "我发起的订单",
+  "navigationBarTitleText": "我接下的订单",
   "usingComponents": {
     "p-item": "./pItem/pItem",
     "e-item": "./eItem/eItem",

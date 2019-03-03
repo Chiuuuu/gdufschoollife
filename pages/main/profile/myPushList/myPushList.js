@@ -1,34 +1,27 @@
 // pages/main/profile/myOrderList/myOrderList.js
 
-wx.cloud.init()
-const db = wx.cloud.database()
-const _ = db.command
+const app = getApp()
+const getDataByOptions = require('../../../../utils/database').getDataByOptions
 
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    openid: null,
-    PpushList: null,
-    EpushList: null,
+    done: null,
+    packageList: null,
+    exchangeList: null,
+
+    // 详细信息
+    hideInfo: true,
+    detailInfo: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // this.setData({
-    //   openid: options.openid
-    // })
-    db.collection('User_OrderList').where({_openid: options.openid}).get()
-    .then(res => {
-      this.setData({
-        openid: res.data[0]._openid,
-        PpushList: res.data[0].package_pushList,
-        EpushList: res.data[0].exchange_pushList,
-      })
-    })
+
   },
 
   /**
@@ -42,7 +35,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let databaseOptions = {
+      _openid: app.globalData._openid
+    }
+    getDataByOptions(databaseOptions, this)
   },
 
   /**
@@ -78,5 +74,16 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+
+  /**
+   * 显示快递员信息
+   */
+  showInfo(e) {
+    // console.log(e)
+    this.setData({
+      hideInfo: false,
+      detailInfo: {...e.detail}
+    })
+  },
 })

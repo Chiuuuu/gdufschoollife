@@ -18,7 +18,7 @@ Page({
     build: [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30],
     buildVal: null,
     room: [
-      ['a','b','c','d','无'],
+      ['无','a','b','c','d'],
       ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15'],
       ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20']
     ],
@@ -100,7 +100,7 @@ Page({
    * @param {*} e
    */
   bindRoomChange(e) {
-    console.log(e)
+    // console.log(e)
     let room = this.data.room
     let roomVal = ''
     e.detail.value.map((item, index) => {
@@ -158,23 +158,43 @@ Page({
       recv,
       phone,
       compony,
-      type,
-      deadline: this.data.defaultType,
+      type
     }
     // console.log(packageOrder)
-    let readyToNav = true
+    let readyToNav = true  // 订单提交开关
     for (let key in packageOrder) {
-      if (packageOrder[key].length === 0) {
+      if (key !== 'isTaken' && key !== 'takenid' && packageOrder[key].length === 0) {
         wx.showToast({
           title: '请完善信息',
           icon: 'none',
           mask: true
         })
-        readyToNav = false
+        readyToNav = false  // 关闭提交
+        return;
       }
     }
-
     if (readyToNav) {
+      let updateTime = (new Date()).getTime()  // 当前时间
+      let cutOff  //截止日期
+      switch(this.data.defaultType) {
+        case '2小时内':
+          cutOff = updateTime + 7200000
+          break;
+        case '今天内':
+          cutOff = updateTime + (22 - new Date(updateTime).getHours()) * 3600000 + (59 - new Date(updateTime).getMinutes()) * 60000
+          break;
+        case '佛系':
+          cutOff = updateTime + (47 - new Date(updateTime).getHours()) * 3600000
+          break;
+      }
+      Object.assign(packageOrder, {
+        deadline: this.data.defaultType,
+        isTaken: false,
+        takenid: null,
+        updateTime,
+        cutOff,
+        takenTime: 0,
+      })
       db.collection('Order_PackageList').add({
         data: packageOrder
       }).then(res => {

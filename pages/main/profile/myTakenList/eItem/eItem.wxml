@@ -1,4 +1,4 @@
-<!--pages/main/profile/myPushList/eItem/eItem.wxml-->
+<!--pages/main/profile/myTakenList/eItem/eItem.wxml-->
 <wxs src="../../../../../utils/tools.wxs" module="filter"></wxs>
 
 <view class="exchange-item" bindtap="clickShowDetail">

@@ -1,6 +1,4 @@
-// pages/main/profile/myPushList/eItem/eItem.js
-const getCourier = require('../../../../../utils/database').getCourier
-
+// pages/main/profile/myTakenList/eItem/eItem.js
 Component({
   /**
    * 组件的属性列表
@@ -10,7 +8,6 @@ Component({
       type: Object,
       value: {},
       observer(newVal) {
-        // 下载图片
         wx.cloud.downloadFile({
           fileID: newVal.fileID, // 文件 ID
           success: res => {
@@ -22,14 +19,6 @@ Component({
           },
           fail: console.error
         })
-        // 获取对方信息
-        if (newVal.takenid !== null) {
-          getCourier(newVal.takenid).then(res => {
-            this.setData({
-              partner: res.data[0]
-            })
-          })
-        }
       }
     },
     last: Boolean
@@ -39,20 +28,25 @@ Component({
    * 组件的初始数据
    */
   data: {
-    image: null,
-    partner: null
+    image: null
+  },
+
+  lifetimes: {
+    ready() {
+
+    }
   },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    // 传入接单人信息
     clickDetail() {
+      // 传入订单发布者的信息
       this.triggerEvent('showInfo', {
         title: '您的交易伙伴',
-        name: this.data.partner.name,
-        phone: this.data.partner.phone
+        name: this.data.item.name,
+        phone: this.data.item.phone
       })
     },
   }

@@ -5,7 +5,7 @@
   <page-nav style="width: 100%; height: 100%">
     <view slot="package">
       <block wx:for="{{packageList}}" wx:key="{{index}}">
-        <package-item class="order-item" package-item="{{item}}" />
+        <package-item bindshowForm="showForm" class="order-item" package-item="{{item}}" courier-info="{{courierInfo}}" />
       </block>
     </view>
     <view slot="exchange">
@@ -16,8 +16,10 @@
   </page-nav>
 
   <!-- 圆形按钮 -->
-  <order-controller />
+  <order-controller bindshowForm="showForm" />
 </view>
+<view wx:else>加载中...</view>
+
 <!-- 商品具体描述,点击弹出 -->
 <view hidden="{{!showDetail}}" class="desc-detail">
   <view class="panel">
@@ -27,4 +29,18 @@
       <view bindtap="cancelDetail">取消</view>
     </view>
   </view>
+</view>
+
+<!-- 快递员填表 -->
+<view class="courier-form-mask" hidden="{{hideForm}}">
+  <form class="courier-form" bindsubmit="postCourierInfo">
+    <view class="info">
+      <input value="{{empty}}" name="name" placeholder="请输入您的称呼" />
+      <input value="{{empty}}" name="phone" placeholder="请输入您的手机号" />
+    </view>
+    <view class="btn">
+      <button style="border: none;background-color: #8E0B02; color: #fff;" form-type="submit">提交</button>
+      <button bindtap="hideForm">取消</button>
+    </view>
+  </form>
 </view>

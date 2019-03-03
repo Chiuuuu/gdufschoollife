@@ -1,4 +1,4 @@
-/* pages/main/profile/myOrderList/myOrderList.wxss */
+/* pages/main/profile/myTakenList/myTakenList.wxss */
 
 .order-box {
   width: 100%;
@@ -6,7 +6,7 @@
   white-space: nowrap;
 }
 
-#courier-info-mask {
+#detail-info-mask {
   width: 100%;
   height: 100%;
   background-color: rgba(0,0,0,.4);
@@ -16,7 +16,7 @@
   left: 0;
   z-index: 999;
 }
-#courier-info-mask .courier-info {
+#detail-info-mask .detail-info {
   box-sizing: border-box;
   color: #999;
   padding: 0 30rpx;
@@ -34,7 +34,8 @@
   animation: scale .3s ease-out;
 }
 
-#courier-info-mask .courier-info .title {
+#detail-info-mask .detail-info .title {
   text-align: center;
   color: #8E0B02;
 }
+

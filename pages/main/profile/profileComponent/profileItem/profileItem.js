@@ -30,7 +30,7 @@ Component({
           path = 'myPushList'
           break;
         case '我的接单':
-          path = 'myPullList'
+          path = 'myTakenList'
           break;
         case '私信':
           path = ''

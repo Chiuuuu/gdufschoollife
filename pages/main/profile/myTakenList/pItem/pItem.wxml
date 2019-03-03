@@ -1,4 +1,4 @@
-<!--pages/main/profile/myPushList/pItem/pItem.wxml-->
+<!--pages/main/profile/myTakenList/pItem/pItem.wxml-->
 <wxs src="../../../../../utils/tools.wxs" module="filter"></wxs>
 
 <view class="package-item">
@@ -11,23 +11,11 @@
       <view class="compony">{{item.compony}}</view>
     </view>
     <view class="bottom">
-      <view class="cut-off">{{filter.pushRemain(item.cutOff)}}</view>
-      <image wx:if="{{item.isTaken}}" src="/images/profile/isTaken.png" />
-      <image wx:else src="/images/profile/isntTaken.png" />
+      <view class="remain">{{filter.takenRemain(item.cutOff, item.takenTime)}}</view>
     </view>
   </view>
 </view>
 <view class="btn-bar" style="border-bottom: {{last ? '1rpx solid #ccc' : '20rpx solid #ccc'}}">
-  <view class="left">
-    <button wx:if="{{item.isTaken}}" bindtap="clickCourier">查看快递员</button>
-  </view>
-  <view class="right">
-    <button
-      bindtap="clickReceive"
-      style="border: none;background-color: #8E0B02; color: #fff"
-      >确认收货
-    </button>
-    <button bindtap="clickCancel">取消订单</button>
-  </view>
+  <view bindtap="clickDetail">查看详细信息</view>
+  <view bindtap="clickCancel">取消订单</view>
 </view>
-

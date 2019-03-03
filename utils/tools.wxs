@@ -10,6 +10,37 @@ function setDate(time) {
   return year + '-' + month + '-' + day + ' ' + hours + ':' + mins + ':' + sec
 }
 
+function takenRemain(cutOff, taken) {
+  var timeStamp = cutOff - taken;
+  var cutOffHour = getDate(cutOff).getHours();
+  var takenHour = getDate(taken).getHours();
+  var hours = cutOffHour - takenHour;
+  if (timeStamp < 0) return '已超时';
+  if (timeStamp > 86400000) {
+    if (hours > 0) {
+      return '剩余一天+' + hours + '小时'
+    }else {
+      return '剩余不足一天'
+    }
+  }else {
+    if (hours > 0) {
+      return '剩余' + hours + '小时'
+    }else {
+      var mins = getDate(cutOff).getMinutes() - getDate(taken).getMinutes();
+      return '剩余' + mins + '分钟'
+    }
+  }
+
+
+}
+
+function pushRemain(cutOff) {
+  var now = getDate().getTime()
+  return takenRemain(cutOff, now)
+}
+
 module.exports = {
-  setDate: setDate
+  setDate: setDate,
+  takenRemain: takenRemain,
+  pushRemain: pushRemain
 }

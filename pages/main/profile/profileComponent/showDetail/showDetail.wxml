@@ -1,0 +1,10 @@
+<!--pages/main/profile/profileComponent/showDetail/showDetail.wxml-->
+
+<!-- 信息弹窗 -->
+<view id="detail-info-mask" class="detail-info-mask" bindtap="clickHideInfo" hidden="{{hideInfo}}">
+  <view class="detail-info">
+    <view class="title">{{detail.title}}</view>
+    <view class="name">称呼: {{detail.name}}</view>
+    <view class="phone">联系方式: {{detail.phone}}</view>
+  </view>
+</view>

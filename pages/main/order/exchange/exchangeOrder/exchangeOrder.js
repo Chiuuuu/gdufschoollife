@@ -144,14 +144,16 @@ Page({
           price,
           goodsName: goods,
           desc: this.data.descVal,
-          timeStamp: (new Date()).getTime()
+          timeStamp: (new Date()).getTime(),
+          isTaken: false,
+          takenid: null
         }
         // console.log(exchangeOrder)
 
         let readyToNav = true // 跳转标记
         for (let key in exchangeOrder) {
           // 除图片外其他属性为空会提示完善信息
-          if (exchangeOrder[key].length === 0) {
+          if (key !== 'isTaken' && key !== 'takenid' && exchangeOrder[key].length === 0) {
             wx.showToast({
               title: '请完善信息',
               icon: 'none',

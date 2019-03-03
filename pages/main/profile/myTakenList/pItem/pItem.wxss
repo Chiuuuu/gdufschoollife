@@ -1,9 +1,5 @@
-/* pages/main/profile/myPushList/pItem/pItem.wxss */
+/* pages/main/profile/myTakenList/pItem/pItem.wxss */
 @import "/pages/main/order/orderComponent/packageItem/packageItem.wxss";
-
-.package-item {
-  border-bottom: 1px dashed #ccc;
-}
 
 .package-item .info image {
   width: 80rpx;
@@ -20,8 +16,8 @@
   margin-top: 20rpx;
 }
 
-.package-item .info .bottom .cut-off {
-  color: #999;
+.package-item .info .bottom .remain {
+  color: #8E0B02;
 }
 
 .btn-bar {
@@ -31,19 +27,12 @@
 
   display: flex;
   flex-flow: row nowrap;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
 }
 
-.btn-bar .right {
-  display: flex;
-}
-
-.btn-bar .left button {
-  margin-left: 30rpx;
-}
-
-.btn-bar button {
+.btn-bar view {
+  padding: 0 20rpx;
   font-size: 28rpx;
   height: 70rpx;
   line-height: 70rpx;

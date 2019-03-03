@@ -1,6 +1,7 @@
-// pages/mine/mine.js
+// pages/main/profile/myTakenList/myTakenList.js
 
-let app = getApp()
+const app = getApp()
+const getDataByOptions = require('../../../../utils/database').getDataByOptions
 
 Page({
 
@@ -8,24 +9,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    iconList: [
-      {
-        icon: '/images/profile/myOrder.png',
-        title: '我的订单'
-      },
-      {
-        icon: '/images/profile/myTaken.png',
-        title: '我的接单'
-      },
-      {
-        icon: '/images/profile/message.png',
-        title: '私信'
-      },
-      {
-        icon: '/images/profile/quit.png',
-        title: '退出登录'
-      },
-    ]
+    done: null,
+    packageList: null,
+    exchangeList: null,
+
+    // 详细信息
+    hideInfo: true,
+    detailInfo: null,
   },
 
   /**
@@ -46,7 +36,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let databaseOptions = {
+      isTaken: true,
+      takenid: app.globalData._openid
+    }
+    getDataByOptions(databaseOptions, this)
   },
 
   /**
@@ -67,7 +61,11 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let databaseOptions = {
+      isTaken: true,
+      takenid: app.globalData._openid
+    }
+    getDataByOptions(databaseOptions, this)
   },
 
   /**
@@ -84,5 +82,14 @@ Page({
 
   },
 
-
+  /**
+   * 显示快递员信息
+   */
+  showInfo(e) {
+    // console.log(e)
+    this.setData({
+      hideInfo: false,
+      detailInfo: {...e.detail}
+    })
+  },
 })

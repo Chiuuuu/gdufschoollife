@@ -21,8 +21,8 @@ Component({
     // 点击图标时弹出选项
     btnClick() {
       wx.showActionSheet({
-        itemList: ['创建代取快递订单', '创建二手交易订单'],
-        success(res) {
+        itemList: ['创建代取快递订单', '创建二手交易订单', '修改绑定信息'],
+        success: (res) => {
           // console.log(res.tapIndex)
           if (res.tapIndex === 0) {
             wx.navigateTo({
@@ -32,6 +32,8 @@ Component({
             wx.navigateTo({
               url: '/pages/main/order/exchange/exchangeOrder/exchangeOrder'
             })
+          }else if (res.tapIndex === 2) {
+            this.triggerEvent('showForm', {type: 'update'})
           }
         }
       })

@@ -1,4 +1,5 @@
 <!--pages/main/order/orderComponent/orderItem/orderItem.wxml-->
+<wxs src="../../../../../utils/tools.wxs" module="filter"></wxs>
 
 <view class="package-item" bindtap="getDetail">
   <image wx:if="{{type === 'urgent'}}" src="/images/order/urgent.png" />
@@ -7,9 +8,10 @@
   <view class="info">
     <view class="top">
       <view class="located">{{located}}({{kind}})</view>
-      <view class="compony">{{compony}}快递</view>
+      <view class="compony">{{compony}}</view>
     </view>
     <view class="deadline">送达时间: {{deadline}}</view>
+    <view class="update">发起时间: {{filter.setDate(updateTime)}}</view>
   </view>
 </view>
 

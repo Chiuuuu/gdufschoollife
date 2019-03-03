@@ -1,4 +1,4 @@
-<!--pages/main/profile/myPushList/pItem/pItem.wxml-->
+<!--pages/main/profile/myTakenList/myTakenList.wxml-->
 
 <view class="order-box">
   <page-nav>
